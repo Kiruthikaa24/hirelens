@@ -1,131 +1,150 @@
-import React from 'react';
+// Homepage.jsx
+// src/components/Homepage.jsx
+// src/components/Homepage.jsx
+// src/components/Homepage.jsx
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
-
 import logo from '../assets/logo.png';
-import banner2 from '../assets/banner2.jpg'; // Hero background
-import banner from "../assets/wallpaper.jpg"; 
 
-function Homepage({ onLogout }) {
+function Homepage() {
+  const [role, setRole] = useState('');
+  const [files, setFiles] = useState([]);
+  const [response, setResponse] = useState('');
+
+  const handleFileChange = (e) => {
+    setFiles(e.target.files);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const formData = new FormData();
+    formData.append('role', role);
+    for (let i = 0; i < files.length; i++) {
+      formData.append('resumes', files[i]);
+    }
+  
+    try {
+      const res = await fetch('https://0a95-34-91-31-215.ngrok-free.app/filter', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      setResponse(JSON.stringify(data, null, 2));
+    } catch (err) {
+      console.error('❌ Error:', err);
+      setResponse('Request failed.');
+    }
+  }; // 👈 You missed this closing brace
+  
+    
+
   return (
-    <div>
-      {/* Top Bar */}
-      <div className="top-bar bg-dark text-white py-1 px-3">
-        <div className="top-bar-content d-flex justify-content-end gap-3 small">
-          <span><i className="fa fa-info-circle"></i> About</span>
-          <Link to="/contact" className="text-white text-decoration-none">
-            <i className="fa fa-envelope"></i> Contact
-          </Link>
+    <div className="homepage">
+      {/* Navigation Bar */}
+      <nav className="navbar-glass">
+        <img src={logo} alt="Logo" className="logo" />
+        <div className="nav-links">
+          <Link to="/">Home</Link>
+          <Link to="#features">Features</Link>
+          <Link to="/how-it-works">How It Works</Link>
+          <Link to="/contact">Contact</Link>
         </div>
-      </div>
+        <div className="auth-buttons">
+          <Link to="/login" className="btn btn-outline-primary">Login</Link>
+          <Link to="/signup" className="btn btn-primary">Sign Up</Link>
+        </div>
+      </nav>
 
-      {/* Navigation */}
-      <div className="bg-light py-3 px-4">
-        <div className="container-fluid d-flex justify-content-between align-items-center flex-wrap">
-          <div className="d-flex align-items-center">
-            <img src={logo} alt="ResumeAI Logo" className="logo me-3" />
-            <div className="navigation-links d-flex gap-3">
-              <Link to="/" className="text-dark text-decoration-none">Home</Link>
-              <a href="#features" className="text-dark text-decoration-none">Features</a>
-              <a href="#how-it-works" className="text-dark text-decoration-none">How It Works</a>
-              <Link to="/contact" className="text-dark text-decoration-none">Contact</Link>
-            </div>
-          </div>
-          <div className="right-navigation">
-            <Link to="/login" className="btn btn-outline-primary me-2">Login</Link>
-            <Link to="/signup" className="btn btn-primary">Sign Up</Link>
-          </div>
+      {/* 🆕 Resume Upload & Role Input Section */}
+      <section className="upload-resume-glass">
+        <h2>Upload Your Resume</h2>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <input
+            type="text"
+            placeholder="Enter Job Role (e.g., Web Developer)"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+          /><br /><br />
+          <input
+            type="file"
+            name="resumes"
+            multiple
+            onChange={handleFileChange}
+            accept=".pdf,.doc,.docx"
+          /><br /><br />
+          <button type="submit" className="btn btn-primary">Upload & Filter</button>
+        </form>
+
+        <div style={{ marginTop: '20px' }}>
+          <strong>Server Response:</strong>
+          <pre>{response}</pre>
         </div>
-      </div>
+      </section>
 
       {/* Hero Section */}
-      <div
-        className="hero-section text-white text-center"
-        style={{
-          backgroundImage: `url(${banner2})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          padding: '100px 20px'
-        }}
-      >
-        <h1 className="display-4 fw-bold">Welcome to ResumeAI</h1>
-        <p className="lead">Smarter Resume Screening with AI</p>
-        <Link to="/signup" className="btn btn-lg btn-primary mt-3">Get Started</Link>
-      </div>
+      <header className="hero-glass">
+        <div className="hero-content">
+          <h1>Welcome to ResumeAI</h1>
+          <p>Smarter Resume Screening with AI</p>
+          <a href="#features" className="btn btn-primary">Get Started</a>
+        </div>
+      </header>
 
       {/* Features Section */}
-      <div className="container my-5" id="features">
-        <h2 className="text-center mb-4">Our Features</h2>
-        <div className="row text-center">
-          <div className="col-md-4 mb-3">
-            <i className="fa fa-file-alt fa-3x mb-2 text-primary"></i>
+      <section id="features" className="features-glass">
+        <h2>Our Features</h2>
+        <div className="features-grid">
+          <div>
             <h5>Resume Parsing</h5>
             <p>Extract and analyze key data from resumes in seconds.</p>
           </div>
-          <div className="col-md-4 mb-3">
-            <i className="fa fa-briefcase fa-3x mb-2 text-success"></i>
+          <div>
             <h5>Job Matching</h5>
             <p>Match applicants to the right job roles using AI algorithms.</p>
           </div>
-          <div className="col-md-4 mb-3">
-            <i className="fa fa-chart-line fa-3x mb-2 text-warning"></i>
+          <div>
             <h5>Analytics Dashboard</h5>
             <p>Visualize screening insights, ranking, and performance metrics.</p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div
-  className="how-it-works-section text-white text-center py-5"
-  style={{
-    backgroundImage: `url(${banner})`, // using wallpaper.jpg
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'fixed', // for parallax effect
-  }}
->
-  <div className="container">
-    <h1 className="mb-4">How It Works</h1>
-    <ol className="list-unstyled fs-5">
-      <li>1. Sign Up / Login to your account</li>
-      <li>2. Upload your resume or import via LinkedIn</li>
-      <li>3. System screens and ranks resumes based on job role</li>
-    </ol>
-  </div>
-</div>
-
+      {/* How It Works Section */}
+      <section className="how-it-works-glass">
+        <h2>How It Works</h2>
+        <ol>
+          <li>Sign Up / Login to your account</li>
+          <li>Upload your resume or import via LinkedIn</li>
+          <li>System screens and ranks resumes based on job role</li>
+        </ol>
+      </section>
 
       {/* Footer */}
-      <div className="footer-section bg-dark text-white py-4">
-        <div className="container d-flex justify-content-between flex-wrap">
-          <div>
-            <h5>ResumeAI</h5>
-            <p>&copy; 2024 ResumeAI Pvt. Ltd.</p>
-          </div>
-          <div>
-            <h6>Quick Links</h6>
-            <p><Link to="/privacy-policy" className="text-white text-decoration-none">Privacy Policy</Link></p>
-            <p><Link to="/terms" className="text-white text-decoration-none">Terms of Service</Link></p>
-          </div>
-          <div>
-            <h6>Connect</h6>
-            <p>📧 support@resumeai.com</p>
-            <p>📱 +91 98765 43210</p>
-          </div>
+      <footer className="footer-glass">
+        <div>
+          <h5>ResumeAI</h5>
+          <p>© 2024 ResumeAI Pvt. Ltd.</p>
         </div>
-      </div>
-
-      {/* Optional Logout Button */}
-      {onLogout && (
-        <div className="text-center mt-3">
-          <button className="btn btn-danger" onClick={onLogout}>Logout</button>
+        <div>
+          <h6>Quick Links</h6>
+          <p>Privacy Policy</p>
+          <p>Terms of Service</p>
         </div>
-      )}
+        <div>
+          <h6>Connect</h6>
+          <p>📧 support@resumeai.com</p>
+          <p>📱 +91 98765 43210</p>
+        </div>
+      </footer>
     </div>
   );
 }
 
 export default Homepage;
+
+
+
+
+
