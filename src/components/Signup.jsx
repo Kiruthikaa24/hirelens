@@ -1,57 +1,100 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Signup() {
+  const [form, setForm] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (form.password !== form.confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:5001/signup", {
+        fullName: form.fullName,
+        email: form.email,
+        password: form.password
+      });
+      alert(response.data.message);
+    } catch (err) {
+      alert(err.response?.data?.error || "Signup failed");
+    }
+  };
+
   return (
-    <div className="container-fluid p-3 my-5 h-custom">
-      <div className="row">
-        {/* Left Image */}
-        <div className="col-md-6 mb-4">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw1.webp"
-            className="img-fluid"
-            alt="Signup Illustration"
-          />
+    <div className="signup-container d-flex align-items-center justify-content-center vh-100">
+      <style>{`
+        .signup-container {
+          background: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw1.webp') no-repeat center center;
+          background-size: cover;
+          position: relative;
+        }
+
+        .signup-form {
+          background: rgba(255, 255, 255, 0.2);
+          backdrop-filter: blur(10px);
+          padding: 40px;
+          border-radius: 15px;
+          width: 100%;
+          max-width: 500px;
+          animation: fadeIn 1s ease-in-out;
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .form-control {
+          background-color: rgba(255, 255, 255, 0.5) !important;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          color: #000;
+        }
+
+        .form-label {
+          font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+
+      <form onSubmit={handleSubmit} className="signup-form">
+        <h3 className="text-center mb-4">Create your account</h3>
+        <div className="mb-3">
+          <label htmlFor="fullName" className="form-label">Full Name</label>
+          <input type="text" id="fullName" className="form-control" onChange={handleChange} />
         </div>
-
-        {/* Signup Form */}
-        <div className="col-md-6">
-          <h3 className="mb-4">Create your account</h3>
-
-          <form>
-            {/* Full Name */}
-            <div className="mb-4">
-              <label htmlFor="fullName" className="form-label">Full Name</label>
-              <input type="text" className="form-control form-control-lg" id="fullName" />
-            </div>
-
-            {/* Email */}
-            <div className="mb-4">
-              <label htmlFor="email" className="form-label">Email address</label>
-              <input type="email" className="form-control form-control-lg" id="email" />
-            </div>
-
-            {/* Password */}
-            <div className="mb-4">
-              <label htmlFor="password" className="form-label">Password</label>
-              <input type="password" className="form-control form-control-lg" id="password" />
-            </div>
-
-            {/* Confirm Password */}
-            <div className="mb-4">
-              <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-              <input type="password" className="form-control form-control-lg" id="confirmPassword" />
-            </div>
-
-            {/* Submit Button */}
-            <div className="text-center text-md-start mt-4 pt-2">
-              <button type="submit" className="btn btn-primary btn-lg px-5">Sign Up</button>
-            </div>
-          </form>
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">Email address</label>
+          <input type="email" id="email" className="form-control" onChange={handleChange} />
         </div>
-      </div>
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">Password</label>
+          <input type="password" id="password" className="form-control" onChange={handleChange} />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+          <input type="password" id="confirmPassword" className="form-control" onChange={handleChange} />
+        </div>
+        <div className="text-center">
+          <button type="submit" className="btn btn-primary btn-lg px-5">Sign Up</button>
+        </div>
+      </form>
     </div>
   );
 }
 
 export default Signup;
+
+

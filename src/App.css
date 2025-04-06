@@ -1,329 +1,425 @@
 /* === Reset + Base === */
 * {
-    box-sizing: border-box;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
-    background: url('./assets/wallpaper.png') no-repeat center center fixed;
-    background-size: cover;
-  }
-  
-  /* === Optional dark overlay if needed === */
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.6);
-    min-height: 100vh;
-    padding: 40px;
-  }
-  
-  .hero {
-    height: 100vh; /* Full screen height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    padding: 0 20px;
-    background-color: rgba(0, 0, 0, 0.6); /* optional overlay for contrast */
-  }
-  
-  .hero h1 {
-    font-size: 4rem; /* Bigger font */
-    font-weight: 700;
-  }
-  
-  .hero p {
-    font-size: 1.5rem;
-    margin-top: 1rem;
-  }
-  
-  .hero .btn {
-    margin-top: 2rem;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-  }
-  .hero-glass {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
-    background-color: rgba(0, 0, 0, 0.55); /* Optional deeper overlay */
-    margin: 0 auto 60px;
-  }
-  /* === Glassmorphism containers === */
-  .features-glass,
-  .how-it-works-glass,
-  .footer-glass {
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    padding: 40px;
-    margin: 40px auto;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    max-width: 900px;
-    text-align: center;
-  }
-  
-  /* === Center content inside sections === */
-  .hero-glass,
-  .how-it-works-glass {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* === Navbar === */
-  .navbar-glass {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    padding: 20px 40px;
-    border-radius: 0 0 16px 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-  .logo {
-    height: 50px;
-  }
-  .nav-links a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
-  }
-  .nav-links a:hover {
-    color: #00aaff;
-  }
-  
-  /* === Hero Section === */
-  .hero-glass h1 {
-    font-size: 4rem;
-    font-family: 'Georgia', serif;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-  }
-  .hero-glass p {
-    font-size: 1.6rem;
-    font-weight: 300;
-    max-width: 800px;
-    margin-bottom: 30px;
-    line-height: 1.6;
-  }
-  .hero-glass .btn {
-    background-color: #ffbb00;
-    color: #000;
-    font-size: 1.2rem;
-    padding: 12px 28px;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
-  .hero-glass .btn:hover {
-    background-color: #ffaa00;
-    color: #fff;
-  }
- 
-  
-  
-  /* === Features Section === */
-  .features-grid div {
-    background: rgba(255, 255, 255, 0.07);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    transition: transform 0.3s ease;
-  }
-  .features-grid div:hover {
-    transform: translateY(-5px);
-  }
-  
-  /* === Footer Text and Links === */
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  background: url('./assets/wallpaper.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* === Optional dark overlay if needed === */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  min-height: 100vh;
+  padding: 40px;
+}
+
+.hero {
+  height: 100vh; /* Full screen height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, 0.6); /* optional overlay for contrast */
+}
+
+.hero h1 {
+  font-size: 4rem; /* Bigger font */
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.hero .btn {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+}
+.hero-glass {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, 0.55); /* Optional deeper overlay */
+  margin: 0 auto 60px;
+}
+/* === Glassmorphism containers === */
+.features-glass,
+.how-it-works-glass,
+.footer-glass {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  margin: 40px auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  max-width: 900px;
+  text-align: center;
+}
+
+/* === Center content inside sections === */
+.hero-glass,
+.how-it-works-glass {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Navbar === */
+.navbar-glass {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 20px 40px;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.logo {
+  height: 50px;
+}
+.nav-links a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.nav-links a:hover {
+  color: #00aaff;
+}
+
+/* === Hero Section === */
+.hero-glass h1 {
+  font-size: 4rem;
+  font-family: 'Georgia', serif;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.hero-glass p {
+  font-size: 1.6rem;
+  font-weight: 300;
+  max-width: 800px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+.hero-glass .btn {
+  background-color: #ffbb00;
+  color: #000;
+  font-size: 1.2rem;
+  padding: 12px 28px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+.hero-glass .btn:hover {
+  background-color: #ffaa00;
+  color: #fff;
+}
+
+
+
+/* === Features Section === */
+.features-grid div {
+  background: rgba(255, 255, 255, 0.07);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+.features-grid div:hover {
+  transform: translateY(-5px);
+}
+
+/* === Footer Text and Links === */
 .footer-glass h5,
 .footer-glass h6 {
-  font-family: 'Georgia', serif;
-  margin-bottom: 10px;
+font-family: 'Georgia', serif;
+margin-bottom: 10px;
 }
 .footer-glass p {
-  font-size: 0.95rem;
+font-size: 0.95rem;
 }
 
 /* === Optional: Backdrop contrast for better readability === */
 .features-glass,
 .how-it-works-glass,
 .footer-glass {
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(12px);
+background: rgba(0, 0, 0, 0.45);
+backdrop-filter: blur(12px);
 }
-  /* === Text Enhancements === */
-  .hero-glass h1,
-  .hero-glass p,
-  .features-glass h2,
-  .features-glass h5,
-  .features-glass p,
-  .how-it-works-glass h2,
-  .how-it-works-glass li,
-  .footer-glass h5,
-  .footer-glass h6,
-  .footer-glass p {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-  }
-  
-  /* === Login Page === */
-  .login-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center; /* center horizontally */
-    align-items: center;     /* center vertically */
-    padding: 2rem;
-  }
-  
-  .login-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .login-image img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-  }
-  
-  .login-form {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-    color: white;
-  }
-  .signup-form {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-    color: white;
-  }
-  .signup-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center; /* center horizontally */
-    align-items: center;     /* center vertically */
-    padding: 2rem;
-  }
-  
-  
-  
-  
-  form input::placeholder,
-form label {
+/* === Text Enhancements === */
+.hero-glass h1,
+.hero-glass p,
+.features-glass h2,
+.features-glass h5,
+.features-glass p,
+.how-it-works-glass h2,
+.how-it-works-glass li,
+.footer-glass h5,
+.footer-glass h6,
+.footer-glass p {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* === Login Page === */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
+  padding: 2rem;
+}
+
+.login-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+.login-form {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
   color: white;
 }
+.signup-form {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  color: white;
+}
+.signup-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
+  padding: 2rem;
+}
+
+
+
+
+form input::placeholder,
+form label {
+color: white;
+}
 .signup-title {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .login-title {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  .social-icons {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  .social-btn {
-    font-size: 1.2rem;
-    padding: 0.5rem 1rem;
-    border: none;
-    background-color: #e0e0e0;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  .divider {
-    text-align: center;
-    margin: 1.5rem 0;
-  }
-  .divider span {
-    font-weight: bold;
-    color: #888;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  form label {
-    margin-bottom: 0.25rem;
-    font-weight: 500;
-  }
-  form input {
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  .options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-  }
-  .options a {
-    text-decoration: none;
-    color: #007bff;
-  }
-  .login-btn {
-    padding: 0.75rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  .forgot-password-link {
-    background: none;
-    border: none;
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
-    padding: 0;
-    font-size: inherit;
-  }
-  .login-form label,
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.login-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.social-btn {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.divider {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+.divider span {
+  font-weight: bold;
+  color: #888;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+form label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+form input {
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+.options a {
+  text-decoration: none;
+  color: #007bff;
+}
+.login-btn {
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.forgot-password-link {
+  background: none;
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+.login-form label,
 .login-title,
 form label,
 .divider span {
-  color: white !important;
+color: white !important;
 }
 .signup-form label,
 .signup-title,
 form label,
 .divider span {
-  color: white !important;
+color: white !important;
 }
-  
-  
-  
-  
+
+
+
+.logo {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+/* Top Bar */
+.top-bar {
+font-size: 0.85rem;
+}
+
+/* Logo */
+.logo {
+height: 50px;
+width: auto;
+}
+
+/* Navigation Links */
+.navigation-links a {
+font-weight: 500;
+color: #333;
+transition: color 0.3s ease;
+}
+
+.navigation-links a:hover {
+color: #0d6efd;
+text-decoration: underline;
+}
+
+/* Sticky Navbar */
+.sticky-navbar {
+position: sticky;
+top: 0;
+z-index: 1000;
+background-color: #fff;
+box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hero Section */
+.hero-section {
+background-color: #004080;
+color: white;
+text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Features Section */
+#features h2 {
+font-weight: bold;
+}
+
+#features i {
+transition: transform 0.3s;
+}
+
+#features i:hover {
+transform: scale(1.1);
+}
+
+/* How It Works Section */
+.how-it-works-section {
+background-color: #222;
+background-attachment: fixed;
+}
+
+.how-it-works-section ol li {
+margin: 15px 0;
+}
+
+/* Footer Section */
+.footer-section {
+font-size: 0.9rem;
+}
+
+.footer-section h6 {
+font-weight: bold;
+}
+
+.footer-section a:hover {
+text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+.navigation-links {
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.right-navigation {
+  margin-top: 1rem;
+}
+
+.top-bar-content {
+  justify-content: center !important;
+}
+}
+

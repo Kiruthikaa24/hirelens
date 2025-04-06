@@ -5,7 +5,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
-import logo from '../assets/logo.png';
+
+import logo from '../assets/logo.png'; // Removed the duplicate import
+import banner2 from '../assets/banner2.jpg'; // Hero background
+import banner from "../assets/wallpaper.png"; // How it works background
 
 function Homepage() {
   const [role, setRole] = useState('');
@@ -36,9 +39,7 @@ function Homepage() {
       console.error('❌ Error:', err);
       setResponse('Request failed.');
     }
-  }; // 👈 You missed this closing brace
-  
-    
+  };
 
   return (
     <div className="homepage">
@@ -57,7 +58,7 @@ function Homepage() {
         </div>
       </nav>
 
-      {/* 🆕 Resume Upload & Role Input Section */}
+      {/* Resume Upload & Role Input Section */}
       <section className="upload-resume-glass">
         <h2>Upload Your Resume</h2>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -112,14 +113,26 @@ function Homepage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="how-it-works-glass">
-        <h2>How It Works</h2>
-        <ol>
-          <li>Sign Up / Login to your account</li>
-          <li>Upload your resume or import via LinkedIn</li>
-          <li>System screens and ranks resumes based on job role</li>
-        </ol>
-      </section>
+      <div
+        className="how-it-works-section text-center py-5"
+        style={{
+          backgroundImage: `url(${banner})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          color: 'black', // Ensures text is visible on the background
+        }}
+      >
+        <div className="container">
+          <h1 className="mb-4">How It Works</h1>
+          <ol className="list-unstyled fs-5 text-start mx-auto" style={{ maxWidth: '600px' }}>
+            <li className="mb-2">1. Sign Up / Login to your account</li>
+            <li className="mb-2">2. Upload your resume or import via LinkedIn</li>
+            <li className="mb-2">3. System screens and ranks resumes based on job role</li>
+          </ol>
+        </div>
+      </div>
 
       {/* Footer */}
       <footer className="footer-glass">
@@ -143,8 +156,4 @@ function Homepage() {
 }
 
 export default Homepage;
-
-
-
-
 
